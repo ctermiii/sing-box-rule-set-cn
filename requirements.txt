@@ -1,3 +1,3 @@
 aggregate6==1.0.12
-requests==2.31.0
-maxminddb==2.5.1
+requests
+maxminddb==2.6.1
