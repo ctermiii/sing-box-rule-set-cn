@@ -33,7 +33,6 @@ output_dir = "./rule-set"
 
 def convert_dnsmasq(url: str) -> str:
     r = requests.get(url)
-    domain_list = []
     domain_suffix_list = []
     if r.status_code == 200:
         lines = r.text.splitlines()
@@ -41,18 +40,15 @@ def convert_dnsmasq(url: str) -> str:
             if not line.startswith("#"):
                 domain = re.match(r"server=\/(.*)\/(.*)", line)
                 if domain:
-                    domain_list.append(domain.group(1))
-                    domain_suffix_list.append("." + domain.group(1))
+                    domain_suffix_list.append(domain.group(1))
     result = {
         "version": 1,
         "rules": [
             {
-                "domain": [],
                 "domain_suffix": []
             }
         ]
     }
-    result["rules"][0]["domain"] = domain_list
     result["rules"][0]["domain_suffix"] = domain_suffix_list
     filepath = os.path.join(output_dir, url.split("/")[-1] + ".json")
     with open(filepath, "w") as f:
@@ -184,8 +180,7 @@ def convert_adguard(url: str) -> str:
                     print("Warning: " + line)
             elif line.startswith("||"):
                 if line.endswith("^"):
-                    domain_list.append(line[2:-1])
-                    domain_suffix_list.append("." + line[2:-1])
+                    domain_suffix_list.append(line[2:-1])
                 else:
                     domain_keyword_list.append(line[2:])
             elif line.startswith("|"):
@@ -241,11 +236,9 @@ def convert_adguard_unblock(url: str) -> str:
 
             if line.startswith("@@||"):
                 if line.endswith("^|"):
-                    domain_list.append(line[4:-2])
-                    domain_suffix_list.append("." + line[4:-2])
+                    domain_suffix_list.append(line[4:-2])
                 elif line.endswith("^"):
-                    domain_list.append(line[4:-1])
-                    domain_suffix_list.append("." + line[4:-1])
+                    domain_suffix_list.append(line[4:-1])
                 else:
                     print("Warning: " + line)
             elif line.startswith("@@|"):
