@@ -59,12 +59,6 @@ Generated & aggregated daily from mulitple sources. Rule sets available at `rule
                 "type": "remote",
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/Dreista/sing-box-rule-set-cn/rule-set/filter.txt.srs"
-            },
-            {
-                "tag": "AdGuard-DNS-Filter-Unblock",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://raw.githubusercontent.com/Dreista/sing-box-rule-set-cn/rule-set/filter.txt.unblock.srs"
             }
         ]
     }
@@ -125,14 +119,6 @@ Source: https://github.com/Dreamacro/maxmind-geoip
 
 Source: https://github.com/AdguardTeam/AdGuardSDNSFilter
 
-Note that all wildcard (*) rules are ignored.
-
 ### filter.txt
 
-[Rule set](/../../raw/rule-set/filter.txt.srs) ([source](/../../raw/rule-set/filter.txt.json))
-
-### filter.txt.unblock
-
-If you find something broken, allow `filter.txt.unblock.srs` may fix it.
-
-[Rule set](/../../raw/rule-set/filter.txt.unblock.srs) ([source](/../../raw/rule-set/filter.txt.unblock.json))
+[Rule set](/../../raw/rule-set/filter.txt.srs) ([source](/../../raw/rule-set/filter.txt))
